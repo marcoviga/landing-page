@@ -22,14 +22,12 @@ const sections = document.querySelectorAll(".navbar__section");
 /**
  * End Global Variables
  * Start Helper Functions
- * 
 */
 
 
 /**
  * End Helper Functions
  * Begin Main Functions
- * 
 */
 function generateNav() {
     const navBarList = document.querySelector("#navbar__list");
@@ -41,24 +39,32 @@ function generateNav() {
         navBarList.appendChild(navSection);
     });
 }
-generateNav();
 
-// Add class 'active' to section when near top of viewport
+function addActiveSections() {
+    const menu__links = document.getElementsByClassName("menu__link");
+    for (let i = 0; i < menu__links.length; i++) {
+        menu__links[i].addEventListener("click", function () {
+            let currentActive = document.getElementsByClassName("active");
+            if (currentActive.length > 0) {
+                currentActive[0].className = currentActive[0].className.replace(" active", "");
+            }
+            this.className += " active";
+        });
+    }
+}
 
 
 // Scroll to anchor ID using scrollTO event
-
-
 /**
  * End Main Functions
  * Begin Events
  * 
 */
 
-// Build menu 
+// Build menu
 
 // Scroll to section on link click
 
 // Set sections as active
-
-
+generateNav();
+addActiveSections();
