@@ -15,20 +15,12 @@
 
 /**
  * Define Global Variables
- * 
+ *
 */
-const sections = document.querySelectorAll(".navbar__section");
+const sections = document.querySelectorAll(".section");
+const menuLinks = document.querySelectorAll("menu__link");
 
-/**
- * End Global Variables
- * Start Helper Functions
-*/
-
-
-/**
- * End Helper Functions
- * Begin Main Functions
-*/
+// build the nav
 function generateNav() {
     const navBarList = document.querySelector("#navbar__list");
     sections.forEach((element) => {
@@ -40,19 +32,41 @@ function generateNav() {
     });
 }
 
-function addActiveSections() {
-    const menu__links = document.getElementsByClassName("menu__link");
-    for (let i = 0; i < menu__links.length; i++) {
-        menu__links[i].addEventListener("click", function () {
-            let currentActive = document.getElementsByClassName("active");
+//add active state in the menu
+function addActiveIfClickNavBar() {
+    // const menu__links = document.getElementsByClassName("menu__link");
+    for (let i = 0; i < menuLinks.length; i++) {
+        menuLinks[i].addEventListener("click", function () {
+            let currentActive = document.getElementsByClassName("your-active-class");
             if (currentActive.length > 0) {
-                currentActive[0].className = currentActive[0].className.replace(" active", "");
+                currentActive[0].className = currentActive[0].className.replace(" your-active-class", "");
             }
-            this.className += " active";
+            this.className += " your-active-class";
         });
     }
 }
 
+function isElementInViewport(el) {
+    let rect = el.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document. documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document. documentElement.clientWidth)
+    );
+}
+
+function addActiveIfInViewport() {
+    document.addEventListener("scroll", function ()  {
+        for (let i = 0; i < sections.length; i++) {
+            const section = sections[i];
+
+            isElementInViewport(section)
+                ? section.classList.add("your-active-class")
+                : section.classList.remove("your-active-class");
+        }
+    });
+}
 
 // Scroll to anchor ID using scrollTO event
 /**
@@ -67,4 +81,5 @@ function addActiveSections() {
 
 // Set sections as active
 generateNav();
-addActiveSections();
+addActiveIfClickNavBar();
+addActiveIfInViewport();
