@@ -34,14 +34,13 @@ function generateNav() {
 
 //add active state in the menu
 function addActiveIfClickNavBar() {
-    // const menu__links = document.getElementsByClassName("menu__link");
     for (let i = 0; i < menuLinks.length; i++) {
         menuLinks[i].addEventListener("click", function () {
-            let currentActive = document.getElementsByClassName("your-active-class");
+            let currentActive = document.querySelector("section.your-active-class");
             if (currentActive.length > 0) {
                 currentActive[0].className = currentActive[0].className.replace(" your-active-class", "");
             }
-            this.className += " your-active-class";
+            menuLinks[i].className += " your-active-class";
         });
     }
 }
@@ -61,12 +60,38 @@ function addActiveIfInViewport() {
         for (let i = 0; i < sections.length; i++) {
             const section = sections[i];
 
-            isElementInViewport(section)
-                ? section.classList.add("your-active-class")
-                : section.classList.remove("your-active-class");
+            if(isElementInViewport(section)) {
+                section.classList.add("your-active-class");
+            } else
+            {
+                section.classList.remove("your-active-class");
+            }
         }
     });
 }
+
+function hideNavBar(){
+    document.addEventListener("scroll", function() {
+        let navMenu = document.querySelector(".navbar__menu");
+        navMenu.style.display="none";
+
+        setTimeout(function(){
+            navMenu.style.display="block";
+            }, 10);
+
+    })
+}
+
+
+// function addScrollToSection() {
+//     for (let i = 0; i < menuLinks.length; i++) {
+//         menuLinks[i].addEventListener("click", function () {
+//             console.log('where is the love');
+//             console.log(menuLinks[i].className);
+//         });
+//     }
+// }
+
 
 // Scroll to anchor ID using scrollTO event
 /**
@@ -83,3 +108,4 @@ function addActiveIfInViewport() {
 generateNav();
 addActiveIfClickNavBar();
 addActiveIfInViewport();
+hideNavBar();
