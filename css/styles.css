@@ -221,3 +221,18 @@ section.your-active-class .landing__container::after {
         rotate(-360deg);
     }
 }
+
+.scroll-to-top {
+    position: fixed;
+    /*display: inline-flex;*/
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border: 2px solid black;
+    /*padding: 18px 36px;*/
+    text-decoration: none;
+    /*margin: 10px 5px;*/
+    cursor: pointer;
+    font-size: 15px;
+    box-shadow: 1px 1px 1px black;
+}

@@ -19,6 +19,8 @@
 */
 const sections = document.querySelectorAll(".section");
 const menuLinks = document.querySelectorAll("menu__link");
+const navMenu = document.querySelector(".navbar__menu");
+const scrollToTopButton = document.querySelector(".scroll-to-top");
 
 // build the nav
 function generateNav() {
@@ -56,7 +58,7 @@ function isElementInViewport(el) {
 }
 
 function addActiveIfInViewport() {
-    document.addEventListener("scroll", function ()  {
+    document.addEventListener("scroll", () => {
         for (let i = 0; i < sections.length; i++) {
             const section = sections[i];
 
@@ -70,42 +72,51 @@ function addActiveIfInViewport() {
     });
 }
 
+let timerUserScrolling;
 function hideNavBar(){
-    document.addEventListener("scroll", function() {
-        let navMenu = document.querySelector(".navbar__menu");
-        navMenu.style.display="none";
+    document.addEventListener("scroll", () => {
+        navMenu.style.display="block";
 
-        setTimeout(function(){
-            navMenu.style.display="block";
-            }, 10);
+        if(timerUserScrolling != null){
+            clearTimeout(timerUserScrolling)
+        }
+
+        if (window.pageYOffset > 50) {
+            timerUserScrolling = setTimeout(  () => {
+                navMenu.style.display="none";
+            }, 1000);
+        }
+    });
+}
+
+
+function ShowBottomUp(){
+    document.addEventListener("scroll", () => {
+        let y = window.scrollY;
+
+        if (y > 0) {
+            scrollToTopButton.style.display="block";
+        }
 
     })
 }
 
-
-// function addScrollToSection() {
-//     for (let i = 0; i < menuLinks.length; i++) {
-//         menuLinks[i].addEventListener("click", function () {
-//             console.log('where is the love');
-//             console.log(menuLinks[i].className);
-//         });
-//     }
-// }
+function clickShowBottomUp(){
+    scrollToTopButton.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
 
 
-// Scroll to anchor ID using scrollTO event
 /**
  * End Main Functions
  * Begin Events
  * 
 */
 
-// Build menu
-
-// Scroll to section on link click
-
-// Set sections as active
 generateNav();
 addActiveIfClickNavBar();
 addActiveIfInViewport();
 hideNavBar();
+ShowBottomUp();
+clickShowBottomUp();
