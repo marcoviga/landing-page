@@ -89,34 +89,24 @@ function hideNavBar(){
     });
 }
 
+// function showButton(){
+//     document.addEventListener("scroll", () => {
+//
+//         if (scrollToTopButton.scrollHeight > 0) {
+//             scrollToTopButton.style.display="block";
+//         }
+//     })
+// }
 
-function ShowBottomUp(){
-    document.addEventListener("scroll", () => {
-        let y = window.scrollY;
-
-        if (y > 0) {
-            scrollToTopButton.style.display="block";
-        }
-
-    })
-}
-
-function clickShowBottomUp(){
+function clickShowButton(){
     scrollToTopButton.addEventListener("click", () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
 
-
-/**
- * End Main Functions
- * Begin Events
- * 
-*/
-
 generateNav();
 addActiveIfClickNavBar();
 addActiveIfInViewport();
 hideNavBar();
-ShowBottomUp();
-clickShowBottomUp();
+showButton();
+clickShowButton();
