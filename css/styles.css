@@ -230,3 +230,7 @@ section.your-active-class .landing__container::after {
     position: fixed;
     bottom: 10px;
 }
+
+.scroll-to-top:hover {
+    cursor: pointer;
+}

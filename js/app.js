@@ -89,14 +89,15 @@ function hideNavBar(){
     });
 }
 
-// function showButton(){
-//     document.addEventListener("scroll", () => {
-//
-//         if (scrollToTopButton.scrollHeight > 0) {
-//             scrollToTopButton.style.display="block";
-//         }
-//     })
-// }
+function goToTopButton(){
+    document.addEventListener("scroll", () => {
+        scrollToTopButton.style.display="none";
+
+        if (window.pageYOffset > 200) {
+            scrollToTopButton.style.display="block";
+        }
+    })
+}
 
 function clickShowButton(){
     scrollToTopButton.addEventListener("click", () => {
@@ -104,9 +105,10 @@ function clickShowButton(){
     });
 }
 
+scrollToTopButton.style.display="none";
 generateNav();
 addActiveIfClickNavBar();
 addActiveIfInViewport();
 hideNavBar();
-showButton();
 clickShowButton();
+goToTopButton();
