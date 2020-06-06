@@ -234,3 +234,7 @@ section.your-active-class .landing__container::after {
 .scroll-to-top:hover {
     cursor: pointer;
 }
+
+.your-active-link {
+    background-color: #999;
+}
