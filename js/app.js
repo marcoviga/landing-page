@@ -18,7 +18,6 @@
  *
  */
 const sections = document.querySelectorAll(".section");
-const menuLinks = document.querySelectorAll("menu__link");
 const navMenu = document.querySelector(".navbar__menu");
 const scrollToTopButton = document.querySelector(".scroll-to-top");
 
@@ -36,27 +35,23 @@ function generateNav() {
 
 function isElementInViewport(el) {
     let rect = el.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
+    return rect.top <= ( window.innerHeight - 150 ) && rect.bottom  >= ( window.innerHeight - 150 );
 }
+
 
 function addActiveIfInViewport() {
     document.addEventListener("scroll", () => {
+        console.log("===============================================");
         for (let i = 0; i < sections.length; i++) {
+
             const section = sections[i];
 
             let currentMenuLinkActive = document.querySelector("[href='#"+section.id+"']");
-
             if (isElementInViewport(section)) {
                 section.classList.add("your-active-class");
                 currentMenuLinkActive.classList.add('your-active-link');
             } else {
-                section.classList.remove("your-active-class");
-                currentMenuLinkActive.classList.remove("your-active-link");
+                currentMenuLinkActive.classList.remove('your-active-link');
             }
         }
     });
