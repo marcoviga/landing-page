@@ -238,3 +238,9 @@ section.your-active-class .landing__container::after {
 .your-active-link {
     background-color: #999;
 }
+
+@media(max-width: 600px) {
+    .navbar__menu li {
+        display: block;
+    }
+}
