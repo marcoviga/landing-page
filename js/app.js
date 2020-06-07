@@ -41,7 +41,6 @@ function isElementInViewport(el) {
 
 function addActiveIfInViewport() {
     document.addEventListener("scroll", () => {
-        console.log("===============================================");
         for (let i = 0; i < sections.length; i++) {
 
             const section = sections[i];
