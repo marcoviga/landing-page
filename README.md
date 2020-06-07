@@ -25,7 +25,8 @@ A list of Extra, Mandatory features implemented
 - Add an active state to your navigation items when a section is in the viewport.
 - Hide fixed navigation bar while not scrolling (it should still be present on page load).
 - Add a scroll to top button on the page that’s only visible when the user scrolls below the fold of the page.
-- Update/change the design/content.
 
 ### TODO Extra Features 
-- Make sections collapsible. 
+- Update/change the design/content.
+- Make sections collapsible.
+
