@@ -34,7 +34,11 @@ function generateNav() {
 
 function isElementInViewport(el) {
     let rect = el.getBoundingClientRect();
-    return rect.top <= (window.innerHeight - 100) && rect.bottom >= (window.innerHeight - 100);
+    console.log(el.id);
+    console.log(rect.top);
+    console.log(window.innerHeight);
+    console.log(rect.bottom);
+    return rect.top <= (window.innerHeight - 200) && rect.bottom >= (window.innerHeight - 200);
 }
 
 
@@ -53,7 +57,7 @@ function addActiveIfInViewport() {
     }
 }
 
-let timerUserScrolling;
+let timerUserScrolling; //timer for hideNavBar()
 
 function hideNavBar() {
     navMenu.style.display = "block";
@@ -65,7 +69,7 @@ function hideNavBar() {
     if (window.pageYOffset > 50) {
         timerUserScrolling = setTimeout(() => {
             navMenu.style.display = "none";
-        }, 1000);
+        }, 2000);
     }
 }
 
@@ -76,7 +80,6 @@ function goToTopButton() {
         scrollToTopButton.style.display = "block";
     }
 }
-
 
 function scrollToTop() {
     scrollToTopButton.addEventListener('click', () => {
