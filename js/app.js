@@ -77,19 +77,19 @@ function goToTopButton() {
     }
 }
 
-function showButton() {
-    window.scrollTo({top: 0, behavior: 'smooth'});
-}
 
+function scrollToTop() {
+    scrollToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth'});
+    });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     scrollToTopButton.style.display = "none";
     generateNav();
+    scrollToTop();
 });
 
-window.addEventListener('click', () => {
-    showButton();
-});
 
 window.addEventListener('scroll', () => {
     hideNavBar();
