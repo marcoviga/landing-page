@@ -1,4 +1,5 @@
 # Landing Page Project
+Landing Page for Udacity project, adding basic DOM manipulation in vanilla javascript.
 
 ## Table of Contents
 

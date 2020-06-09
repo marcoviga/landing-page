@@ -21,6 +21,7 @@ const sections = document.querySelectorAll(".section");
 const navMenu = document.querySelector(".navbar__menu");
 const scrollToTopButton = document.querySelector(".scroll-to-top");
 
+
 function generateNav() {
     const navBarList = document.querySelector("#navbar__list");
     sections.forEach((element) => {
@@ -34,10 +35,6 @@ function generateNav() {
 
 function isElementInViewport(el) {
     let rect = el.getBoundingClientRect();
-    console.log(el.id);
-    console.log(rect.top);
-    console.log(window.innerHeight);
-    console.log(rect.bottom);
     return rect.top <= (window.innerHeight - 200) && rect.bottom >= (window.innerHeight - 200);
 }
 
@@ -47,7 +44,7 @@ function addActiveIfInViewport() {
 
         const section = sections[i];
 
-        let currentMenuLinkActive = document.querySelector("[href='#" + section.id + "']");
+        const currentMenuLinkActive = document.querySelector("[href='#" + section.id + "']");
         if (isElementInViewport(section)) {
             section.classList.add("your-active-class");
             currentMenuLinkActive.classList.add('your-active-link');
@@ -87,14 +84,29 @@ function scrollToTop() {
     });
 }
 
+function scrollToSection(){
+    //needs to be called after the navBar is created
+    const navLinks = document.querySelectorAll(".menu__link");
+
+    for (let i = 0; i < navLinks.length; i++) {
+        navLinks[i].addEventListener('click', (event) => {
+            event.preventDefault();
+            const sectionHref = navLinks[i].attributes.href.value;
+            const sectionTarget = document.querySelector(sectionHref);
+            sectionTarget.scrollIntoView({ top: 0, behavior: 'smooth'});
+        });
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     scrollToTopButton.style.display = "none";
     generateNav();
     scrollToTop();
+    scrollToSection();
 });
 
 
-window.addEventListener('scroll', () => {
+document.addEventListener('scroll', () => {
     hideNavBar();
     goToTopButton();
     addActiveIfInViewport();
